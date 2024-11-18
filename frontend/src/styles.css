@@ -1,0 +1,16 @@
+
+
+div.table {
+    max-height: 80vh;
+    /* max-width: 130vh; */
+    overflow-y: auto;
+}
+
+td{
+    padding-right: '64px';
+}
+
+input{
+    border: none;
+    outline: none;
+}
