@@ -42,19 +42,6 @@ return <>
                           <label className="form-label" for="password">Password</label>
                         </div>
 
-                        {/* <button  className="btn btn-primary btn-block mb-4" onClick={ (e)=>{
-                          e.preventDefault();
-                          axios.post("http://localhost:3001/createUser", 
-                          {name: userName, 
-                          email: userEmail, 
-                          password: password}
-                          ).then((res) => {
-                            alert("Account successfully created!");
-                            navigate("/");
-                          }).catch((err) => {
-                            console.log(err);
-                            alert("There seems to be a problem! Try logging in or Visit the site later :(")})
-                        } }>Sign up</button> */}
                           <button className="btn btn-primary btn-block mb-4" onClick={(e) => {
                             e.preventDefault();
                             console.log("Payload being sent to backend:", {
@@ -69,7 +56,7 @@ return <>
                                 password: password,
                               })
                               .then((res) => {
-                                alert("Account successfully created!");
+                                alert("Account successfully created! Please Login to continue");
                                 navigate("/");
                               })
                               .catch((err) => {

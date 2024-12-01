@@ -2,7 +2,6 @@
 
 div.table {
     max-height: 80vh;
-    /* max-width: 130vh; */
     overflow-y: auto;
 }
 

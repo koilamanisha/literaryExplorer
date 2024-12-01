@@ -67,7 +67,6 @@ function ReviewPage(){
         <thead>
             <tr>
               <th scope="col">#</th>
-              {/* <th>Book ID</th> */}
               <th  className="px-3" scope="col">Title</th>
               <th scope="col" className="px-3">Average Rating</th>
               <th scope="col" className="px-3">User Review</th>

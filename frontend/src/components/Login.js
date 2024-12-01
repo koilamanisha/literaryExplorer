@@ -44,7 +44,6 @@ function Login(){
                 axios.post("http://localhost:3001/loginUser", { email: userEmail, password: password })
                     .then((response) => {
                     console.log(response.data);
-                    alert(response.data.message);
                     navigate("/home", { state: { userEmail, userName: response.data.userName } })
                     })
                     .catch((error) => {

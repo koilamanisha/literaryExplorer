@@ -26,7 +26,6 @@ function Home() {
     userName = location.state.userName;
   }
   catch(err){
-    // alert("Please Login to visit this page!");
     navigate("/");
   }
   if(userEmail === ""){
@@ -46,19 +45,15 @@ function getAllBooks(){
     axios.get("http://localhost:3001/getAllBooks")
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching books data from the backend:", error);
       });
   }
 
-//   console.log(data);
-//   setData(data.data);
 
   function reviewBook(bookID){
     navigate("/review", { state: { bookID: bookID, userEmail: userEmail, userName: userName } })
-    alert("Review book with bookID " + bookID);
   }
 
 
@@ -95,7 +90,6 @@ function getAllBooks(){
         <thead>
             <tr>
               <th scope="col">#</th>
-              {/* <th>Book ID</th> */}
               <th scope="col">Title</th>
               <th scope="col">Author Name</th>
               <th scope="col">Number of Pages</th>
