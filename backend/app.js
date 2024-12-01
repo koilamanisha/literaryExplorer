@@ -61,6 +61,7 @@ app.post("/createUser", function(req, res){
             res.status(400).json({ error: "An account with this email already exists!" });
         }
         else{
+            console.log("Account created")
             res.status(200).json({ message: "Account successfully created!\nPlease login." });
     }
 })
@@ -78,6 +79,7 @@ app.post("/loginUser", function(req, res){
             });
         }
             else{
+                console.log("Account not found in the database.")
                 res.status(401).json({ error: "User Not found" });
             }
     }
@@ -94,6 +96,7 @@ app.post("/addReview", (req, res) => {
         rat_count += 1;
         db.execute("UPDATE ratings SET average_rating = ?, ratings_count = ? WHERE bookID = ?;", [avg_rat, rat_count, req.body.bookID], (err, response) => {
             if(err) console.log(err);
+            condolr.log("Ratings updated.")
         })
     })
 
@@ -101,6 +104,7 @@ app.post("/addReview", (req, res) => {
         if(err) console.log(err);
         else{
             res.status(200).json({data: result});
+            console.log("Review added")
         }
     })
 });
@@ -109,6 +113,7 @@ app.get("/getAllReviews", (req, res)=>{
     db.execute("SELECT b.bookID, re.rating, b.title, re.reviewID, re.userID, r.average_rating,  re.review, u.name, re.likes FROM books b, ratings r, reviews re, users u WHERE re.bookID = b.bookID AND re.bookID = r.bookID AND u.email = re.userID;", (err, response)=>{
         if(err) console.log(err);
         res.status(200).json(response);
+        console.log("All reviews sent")
     })
 });
 
@@ -116,6 +121,7 @@ app.post("/getMyReviews", (req, res)=>{
     db.execute("SELECT b.bookID, b.title, re.rating, re.reviewID, re.userID, r.average_rating,  re.review, u.name, re.likes FROM books b, ratings r, reviews re, users u WHERE re.bookID = b.bookID AND re.bookID = r.bookID AND u.email = re.userID AND re.userID = ?;",[req.body.userID], (err, response)=>{
         if(err) console.log(err);
         res.status(200).json(response);
+        console.log("Requested review sent")
     })
 });
 
@@ -123,6 +129,7 @@ app.post("/editReview", (req, res) => {
     db.execute("UPDATE reviews SET rating = ?, review = ? WHERE reviewID = ?;", [req.body.rating, req.body.review, req.body.reviewID], (err, response)=>{
         if(err) console.log(err);
         res.status(200).json({"message": "Review Updated!"});
+        console.log("Review Updated")
     });
 });
 
@@ -130,5 +137,6 @@ app.post("/deleteReview", (req, res) => {
     db.execute("DELETE FROM reviews WHERE reviewID = ?;", [req.body.reviewID], (err, response)=>{
         if(err) console.log(err);
         res.status(200).json({"message": "Review Deleted!"});
+        console.log("Review Deleted")
     });
 });
