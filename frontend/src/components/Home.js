@@ -42,7 +42,7 @@ function Home() {
 }, [searchValue]);
 
 function getAllBooks(){
-    axios.get("http://localhost:3001/getAllBooks")
+    axios.get("https://mkoila-backend-deploy.onrender.com/getAllBooks")
       .then((res) => {
         setData(res.data);
       })

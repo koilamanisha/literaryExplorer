@@ -31,7 +31,7 @@ export default function EditReview(){
     }
 
     useEffect(() => {
-        axios.post("http://localhost:3001/getBook", {bookID: bookID})
+        axios.post("https://mkoila-backend-deploy.onrender.com/getBook", {bookID: bookID})
         .then((res) => {
             setBook(res.data[0]);
             console.log(res.data);
@@ -40,7 +40,7 @@ export default function EditReview(){
             console.error("Error fetching data:", error);
         });
 
-        axios.post("http://localhost:3001/getReview", {reviewID: reviewID})
+        axios.post("https://mkoila-backend-deploy.onrender.com/getReview", {reviewID: reviewID})
         .then((res) => {
             setUserReview(res.data[0].review);
             setUserRating(res.data[0].rating);
@@ -92,11 +92,11 @@ export default function EditReview(){
         </select>
         <br />
         <button className="btn btn-primary mx-4" onClick={() => {
-                                            axios.post("http://localhost:3001/editReview", {review: userReview, rating: userRating, reviewID: reviewID});
+                                            axios.post("https://mkoila-backend-deploy.onrender.com/editReview", {review: userReview, rating: userRating, reviewID: reviewID});
                                             navigate("/home", { state: { userEmail: userEmail, userName: userName } })  
                                         }} >Submit </button>
         <button className="btn btn-danger mx-4" onClick={() => {
-                                            axios.post("http://localhost:3001/deleteReview", {reviewID: reviewID});
+                                            axios.post("https://mkoila-backend-deploy.onrender.com/deleteReview", {reviewID: reviewID});
                                             navigate("/home", { state: { userEmail: userEmail, userName: userName } })  
                                         }} >Delete Review </button>
     </Container>

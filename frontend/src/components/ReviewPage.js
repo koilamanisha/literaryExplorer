@@ -29,7 +29,7 @@ function ReviewPage(){
     navigate("/");
   }
     function getAllReviews(){
-        axios.get("http://localhost:3001/getAllReviews")
+        axios.get("https://mkoila-backend-deploy.onrender.com/getAllReviews")
             .then((response)=>{setReviewData(response.data)})
     }
 
@@ -54,7 +54,7 @@ function ReviewPage(){
         <h1>Welcome to the Review page { userName }</h1>
         <p>Here, you can find the reviews given by you, and all other people. You can even like or upvote a book review.</p>
     
-        <button className="btn btn-primary" onClick={()=>{axios.post("http://localhost:3001/getMyReviews", {userID: userEmail})
+        <button className="btn btn-primary" onClick={()=>{axios.post("https://mkoila-backend-deploy.onrender.com/getMyReviews", {userID: userEmail})
                                             .then((response)=>{setReviewData(response.data)})}}>Get My reviews</button>
         <button className="btn btn-primary mx-4" onClick={getAllReviews}>Checkout all reviews</button>
         <button className="btn btn-primary" onClick={()=>{
@@ -89,11 +89,11 @@ function ReviewPage(){
             <td className="px-3">{i.name}</td>
             <td className="px-3">{i.likes}</td>
             <td>
-              <button type="button" className="btn btn-info" onClick={() => axios.post("http://localhost:3001/addLike", {reviewID: i.reviewID, likesCount: i.likes + 1})
+              <button type="button" className="btn btn-info" onClick={() => axios.post("https://mkoila-backend-deploy.onrender.com/addLike", {reviewID: i.reviewID, likesCount: i.likes + 1})
                                                                                 .then(alert("Review Liked!"))}> Like </button>
             </td>
             <td>
-              <button type="button" className="btn btn-danger" onClick={() => axios.post("http://localhost:3001/addLike", {reviewID: i.reviewID, likesCount: i.likes - 1})
+              <button type="button" className="btn btn-danger" onClick={() => axios.post("https://mkoila-backend-deploy.onrender.com/addLike", {reviewID: i.reviewID, likesCount: i.likes - 1})
                                                                                 .then(alert("Review Disliked"))}> Dislike </button>
             </td>
             {i.userID === userEmail ? <td>

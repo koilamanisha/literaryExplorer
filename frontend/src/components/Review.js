@@ -29,7 +29,7 @@ export default function Review(){
     }
 
     useEffect(() => {
-        axios.post("http://localhost:3001/getBook", {bookID: bookID})
+        axios.post("https://mkoila-backend-deploy.onrender.com/getBook", {bookID: bookID})
         .then((res) => {
             setBook(res.data[0]);
             console.log(res.data);
@@ -83,7 +83,7 @@ export default function Review(){
         </select>
         <br />
         <button className="btn btn-primary" onClick={() => {
-                                            axios.post("http://localhost:3001/addReview", {userID: userEmail, bookID: book.bookID, review: userReview, rating: userRating, likes: 0});
+                                            axios.post("https://mkoila-backend-deploy.onrender.com/addReview", {userID: userEmail, bookID: book.bookID, review: userReview, rating: userRating, likes: 0});
                                             navigate("/home", { state: { userEmail: userEmail, userName: userName } })  
                                         }} >Submit </button>
     </Container>
