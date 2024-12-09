@@ -21,7 +21,6 @@ const db = mysql.createPool({
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT || 3306,
 });
 
 
@@ -138,5 +137,12 @@ app.post("/deleteReview", (req, res) => {
         if(err) console.log(err);
         res.status(200).json({"message": "Review Deleted!"});
         console.log("Review Deleted")
+    });
+});
+
+app.post("/addLike", (req, res)=> {
+    db.execute("UPDATE reviews SET likes = ? WHERE reviewID = ?;", [req.body.likesCount, req.body.reviewID], (err, response) => {
+        if(err) console.log(err);
+        res.status(200).json({"message": "Likes updated"});
     });
 });
